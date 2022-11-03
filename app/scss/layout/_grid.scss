@@ -1,12 +1,14 @@
+@use '../util' as u;
+
 .grid {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     gap: 40px;
-    max-width: 1024px;
-    margin: 0 auto;
+    width: min(100% - 40px, 1024px);
+    margin-inline: auto;
 
-    @media (min-width: 768px) {
+    @include u.breakpoint(large) {
         grid-template-columns: 2fr 1fr;
         grid-template-rows: auto;
     }
@@ -15,12 +17,27 @@
         padding: 40px;
     }
 
-
     &__main {
         background-color: hsl(240, 99%, 33%);
+
+        @include u.breakpoint(medium) {
+            background-color: hsl(120, 100%, 17%);
+        }
+
+        @include u.breakpoint(large) {
+            background-color: hsl(39, 100%, 31%);
+        }
     }
 
     &__sidebar {
         background-color: hsl(300, 100%, 30%);
+
+        @include u.breakpoint-down(medium) {
+            text-align: center;
+        }
+
+        @include u.breakpoint-down(small) {
+            text-align: right;
+        }
     }
 }
